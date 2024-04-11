@@ -128,6 +128,19 @@ namespace Flecs.NET.Core
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        public ref EventBuilder Ctx<T>(ref T data)
+        {
+            fixed (T* ptr = &data) {
+                _desc.param = ptr;
+                return ref this;
+            }
+        }
+
+        /// <summary>
+        ///     Set event data.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public ref EventBuilder Ctx(void* data)
         {
             _desc.param = data;
